@@ -33,6 +33,7 @@ Route::group (['prefix' => 'admin','namespace' => 'Admin'], function () {
 	Route::resource( 'users', 'UserController');
 	Route::resource( 'roles', 'RolesController');
 	Route::resource( 'module','ModuleController');
+	Route::resource( 'modulerole','ModuleRoleController');
 	Route::post ('register', 'UserController@postRegister' );
 });
 	

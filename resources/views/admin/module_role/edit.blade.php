@@ -16,7 +16,7 @@
 						</ul>
 					</div>
 					@endif
-					{!! Form::model($module,['url'=>'admin/module/permission','method'=>'POST','class'=>'form-horizontal']) !!}
+					{!! Form::model($module,['route'=>['admin.modulerole.update',$module],'method'=>'PUT','class'=>'form-horizontal']) !!}
 						@include('admin.module.partials.fields')
 						@include('admin.module.partials.roles')
 						<div class="form-group">

@@ -68,7 +68,7 @@ class ModuleController extends Controller {
 		if($request->permission=='true'){
 			$roles = Roles::all(['id','slug','name','permissions']);
 			//dd($roles[0]);
-			return view("admin.module.permission")->with(['module'=>$module,'roles'=>$roles]);
+			return view("admin.module_role.edit")->with(['module'=>$module,'roles'=>$roles]);
 		}else
 			return view("admin.module.delete")->with("module",$module);
 	}
@@ -123,6 +123,18 @@ class ModuleController extends Controller {
 		}
 		flash()->overlay('The item has been delete!','Aviso');
 		return redirect("admin/module");
+	}
+	
+	public function permission(Request $request){
+		try{
+			
+		}catch (QueryException $e){
+			flash()->overlay("Ocurrió un error en el registro, consulte con el administrador",'Aviso');
+			return redirect()->back()->withInput($request->all());
+		}
+		flash()->overlay('The item has been delete!','Aviso');
+		return redirect("admin/module");
+		
 	}
 
 }
