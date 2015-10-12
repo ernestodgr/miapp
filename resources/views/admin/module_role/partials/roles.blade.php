@@ -11,15 +11,44 @@
 				<tr align="center">
 					<td>{{$role->name}}</td>
 					<td>
-						<ul>
-						@foreach ($role->permissions as $key=>$permissions)
-							<li>{{$key}}</li>
-						@endforeach
-						</ul>		
+						
+						<div style="display: block;">
+							<ul class="list-group">
+								@foreach ($role->permissions as $key=>$per)
+									@if($key =='user.create')
+										@if($per==true) 
+											<li class="">Crear</li>
+										@endif
+									@endif
+									@if($key =='user.update')
+										@if($per==true) 
+											<li class="">Actualizar</li>
+										@endif
+									@endif
+									@if($key =='user.delete')
+										@if($per==true) 
+											<li class="">Eliminar</li>
+										@endif
+									@endif
+									@if($key =='user.view')
+										@if($per==true) 
+											<li class="">Consultar</li>
+										@endif
+									@endif			
+									
+								@endforeach
+							</ul>
+						</div>
+						
 					</td>
 					<td>
-					
-					<input type="checkbox" name="permissions[]" value="{{$role->id}}">
+					{!!$activo = ''!!}
+					@foreach ($moduleRole as $key=>$moduRole)
+						@if($moduRole->role_id == $role->id)
+							<?php $activo = 'checked' ?>
+						@endif
+					@endforeach
+					<input type="checkbox" name="permissions[]" value="{{$role->id}}" {{$activo}}>
 				</tr>
 			@endforeach
 		</table>

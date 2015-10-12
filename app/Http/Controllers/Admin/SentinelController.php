@@ -61,7 +61,7 @@ class SentinelController extends Controller {
 	 */
 	public function postRegister(Request $request) {
 		//$validator = $this->registrar->validator ( $request->all () );
-		//dd($request->all());
+		dd($request->all());
 		
 		$data = $request->all();
 		$rules = array(

@@ -5,13 +5,15 @@ use Cartalyst\Sentinel\Users\EloquentUser;
 
 class User extends EloquentUser {
 	public static function getUsers($valor){		
-		return \DB::table('users')
-		->join('role_users', 'users.id', '=', 'role_users.user_id')
-		->join('roles', 'roles.id', '=', 'role_users.role_id')
-		->select('users.*','users.permissions as userpermissions', 'roles.*')
-		->where('first_name', 'like', "%$valor%")
+		//dd($valor);
+		$users =  \DB::table('users');
+		//->join('role_users', 'users.id', '=', 'role_users.user_id')
+		//->join('roles', 'roles.id', '=', 'role_users.role_id')
+		//->select('users.*','users.permissions as userpermissions', 'roles.*');
+		/*->where('first_name', 'like', "%$valor%")
 		->orWhere('last_name', 'like', "%$valor%")
-		->orWhere('username', 'like', "%$valor%");
+		->orWhere('username', 'like', "%$valor%");*/
+		dd($users);
 	}
 	
 	public function scopeSearch($query,$valor){

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use miApp\Module;
 use miApp\miApp;
 use miApp\Roles;
+use miApp\ModuleRole;
 
 class ModuleController extends Controller {
 
@@ -67,8 +68,10 @@ class ModuleController extends Controller {
 		
 		if($request->permission=='true'){
 			$roles = Roles::all(['id','slug','name','permissions']);
-			//dd($roles[0]);
-			return view("admin.module_role.edit")->with(['module'=>$module,'roles'=>$roles]);
+			$moduleRole = ModuleRole::getModuleRoleByModule($id);
+			//dd($moduleRole);
+			//dd(array_search('id',$moduleRole));
+			return view("admin.module_role.edit")->with(['module'=>$module,'roles'=>$roles,'moduleRole'=>$moduleRole]);
 		}else
 			return view("admin.module.delete")->with("module",$module);
 	}

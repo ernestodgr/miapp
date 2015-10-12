@@ -209,6 +209,7 @@ use miApp\User;
       MAIN CONTENT
       *********************************************************************************************************************************************************** -->
 		<!--main content start-->
+		@include('flash::message')
 		<section id="main-content">
 			<section class="wrapper site-min-height">
 				<div class="row mt">
@@ -231,7 +232,7 @@ use miApp\User;
 		</footer>
 		<!--footer end-->
 	</section>
-	@include('flash::message')
+	
 	<!-- js placed at the end of the document so the pages load faster -->
 	<script src="{{ asset('/js/jquery.js') }}"></script>
 	
@@ -253,7 +254,7 @@ use miApp\User;
 	
 	<script>
 	$('#flash-overlay-modal').modal();
-   
+	$(".modal-dialog").css("z-index", "1500");
   	</script>
 
 </body>

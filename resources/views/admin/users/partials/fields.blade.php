@@ -7,26 +7,25 @@
 <div class="form-group">
 	<label class="col-md-4 control-label">Last Name</label>
 	<div class="col-md-6">
-		<input type="text" class="form-control" name="last_name" value="{{ old('last_name') }}">
+		{!! Form::text('last_name',null, ['class'=>'form-control','placeholder' => 'Last Name']) !!}
 	</div>
 </div>
 <div class="form-group">
 	<label class="col-md-4 control-label">User Name</label>
 	<div class="col-md-6">
-		<input type="text" class="form-control" name="username"	value="{{ old('username') }}">
+		{!! Form::text('username',null, ['class'=>'form-control','placeholder' => 'Username']) !!}
 	</div>
 </div>
 <div class="form-group">
 	<label class="col-md-4 control-label">E-Mail Address</label>
 	<div class="col-md-6">
-		<input type="email" class="form-control" name="email" value="{{ old('email') }}">
+		{!! Form::text('email',null, ['class'=>'form-control','placeholder' => 'Email']) !!}
 	</div>
 </div>
 <div class="form-group">
 	<label class="col-md-4 control-label">Rol</label>
-	
 	<div class="col-md-6">
-		{!!Form::select('size', $roles, null, ['placeholder' => 'Pick a size','class'=>'form-control']) !!}
+		{!!Form::select('role', $roles, null, ['placeholder' => 'Select a role','class'=>'form-control']) !!}
 	</div>
 </div>
 <div class="form-group">

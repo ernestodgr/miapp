@@ -32,10 +32,10 @@
 							<div class="form-group">
 								<label class="col-md-4 control-label control-label">Permisos</label>
 								<div class="col-md-6 checkbox">
-									<label><input type="checkbox" value="user.create" name="user.create">Crear</label>
-									<label><input type="checkbox" value="user.delete" name="user.delete">Eliminar</label>
-							  		<label><input type="checkbox" value="user.view" name="user.view">Consultar</label>
-							  		<label><input type="checkbox" value="user.update" name="user.update">Modificar</label>
+									<label><input type="checkbox" value="user.create" name="user.create">Created</label>
+									<label><input type="checkbox" value="user.delete" name="user.delete">Delete</label>
+							  		<label><input type="checkbox" value="user.view" name="user.view">View</label>
+							  		<label><input type="checkbox" value="user.update" name="user.update">Edit</label>
 								</div>
 							</div>
 							

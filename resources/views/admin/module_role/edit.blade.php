@@ -17,8 +17,8 @@
 					</div>
 					@endif
 					{!! Form::model($module,['route'=>['admin.modulerole.update',$module],'method'=>'PUT','class'=>'form-horizontal']) !!}
-						@include('admin.module.partials.fields')
-						@include('admin.module.partials.roles')
+						@include('admin.module_role.partials.fields')
+						@include('admin.module_role.partials.roles')
 						<div class="form-group">
 							<div class="col-md-6 col-md-offset-4">
 								<button type="submit" class="btn btn-primary">Save</button>

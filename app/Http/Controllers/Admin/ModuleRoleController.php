@@ -6,6 +6,9 @@ use miApp\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use miApp\ModuleRole;
 
+use Illuminate\Support\Facades\Session;
+use Illuminate\Http\Illuminate\Http;
+
 class ModuleRoleController extends Controller {
 
 	/**
@@ -69,10 +72,9 @@ class ModuleRoleController extends Controller {
 	public function update($id,Request $request)
 	{
 		
-		\DB::enableQueryLog();
-		dd(ModuleRole::getModuleRole());
+		//dd(ModuleRole::getModuleRole());
 		
-		dd(\DB::getQueryLog());
+		//dd(\DB::getQueryLog());
 		try{
 			$module->fill($request->all());
 			$module->save();

@@ -29,7 +29,6 @@ class UserController extends Controller {
 		$search = $request->get('search');
 		//$users = User::whereRaw("first_name like '%$search%' or last_name like '%$search%' or username like '%$search%'")->paginate(15);
 		$users = User::getUsers($search)->paginate(15);
-		//dd($users);
 		return view('admin.users.index',compact('users',$users));
 	}
 
@@ -43,16 +42,6 @@ class UserController extends Controller {
 		$roles = Roles::all(['id','name'])->lists('name','id');
 		//dd($roles);
 		return view('admin.users.create',compact('roles',$roles));
-	}
-
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
 	}
 
 	/**

@@ -20,31 +20,33 @@
 									
 					{!! Form::model($roles,['route'=>['admin.roles.update',$roles],'method'=>'PUT']) !!}
 							<div class="form-group">
-								<label class="col-md-4 control-label control-label">Nombre</label>
+								<label class="col-md-4 control-label control-label">Name</label>
 								<div class="col-md-6">
 									{!! Form::text('name',null,['class'=>'form-control']) !!}
 								</div>
 							</div>
 							
-							<div class="form-group">
-								<label class="col-md-4 control-label control-label">Permisos</label>
+								<div class="form-group">
+								<label class="col-md-4 control-label control-label">Permission</label>
 								<div class="col-md-6 checkbox">
+								
+								<?php
+								
+								$perm = $roles->permissions;
+								$create = $perm['user.create']==true?'checked':'';
+								$delete = $perm['user.delete']==true?'checked':'';
+								$view 	= $perm['user.view']  ==true?'checked':'';
+								$update = $perm['user.update']==true?'checked':'';
+								?>
 									
-									<?php 
-										$perm = json_decode($roles->permissions);
-										$create = $perm->{'user.create'}==true?'checked':'';
-										$delete = $perm->{'user.delete'}==true?'checked':'';
-										$view 	= $perm->{'user.view'}	==true?'checked':'';
-										$update = $perm->{'user.update'}==true?'checked':'';
-									?>
-									
-									<label><input type="checkbox" value="user.create" name="user.create" {!! $create !!}>Crear</label>
-									<label><input type="checkbox" value="user.delete" name="user.delete" {!! $delete !!}>Eliminar</label>
-							  		<label><input type="checkbox" value="user.view"   name="user.view" {!! $view !!}>Consultar</label>
-							  		<label><input type="checkbox" value="user.update" name="user.update" {!! $update !!}>Modificar</label>
+									<label><input type="checkbox" value="user.create" name="user.create" {!! $create !!}>Create</label>
+									<label><input type="checkbox" value="user.delete" name="user.delete" {!! $delete !!}>Delete</label>
+									<label><input type="checkbox" value="user.view"   name="user.view" {!! $view !!}>View</label>
+									<label><input type="checkbox" value="user.update" name="user.update" {!! $update !!}>Edit</label>
 								</div>
-							</div>
+								</div>
 							
+													
 							<div class="form-group">
 								<div class="col-md-6 col-md-offset-4">
 									<button type="submit" class="btn btn-primary" onclick="return confirm('Seguro desea guardar este registro?')">Register</button>

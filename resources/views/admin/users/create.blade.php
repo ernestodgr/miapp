@@ -16,7 +16,7 @@
 						</ul>
 					</div>
 					@endif
-					{!! Form::open(['route'=>'admin.users.store','method'=>'POST','class'=>'form-horizontal']) !!}
+					{!! Form::open(['url'=>'admin/register','method'=>'POST','class'=>'form-horizontal']) !!}
 						@include('admin.users.partials.fields')
 						<div class="form-group">
 							<div class="col-md-6 col-md-offset-4">
