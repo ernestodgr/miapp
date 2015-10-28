@@ -71,7 +71,7 @@ class ModuleRoleController extends Controller {
 	 */
 	public function update($id,Request $request)
 	{
-		
+		dd($request->all());
 		//dd(ModuleRole::getModuleRole());
 		
 		//dd(\DB::getQueryLog());

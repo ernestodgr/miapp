@@ -61,21 +61,21 @@ class ModuleController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id,Request $request)
+	public function show($id)
 	{
-		
 		$module = Module::findOrFail($id);
-		
-		if($request->permission=='true'){
-			$roles = Roles::all(['id','slug','name','permissions']);
-			$moduleRole = ModuleRole::getModuleRoleByModule($id);
-			//dd($moduleRole);
-			//dd(array_search('id',$moduleRole));
-			return view("admin.module_role.edit")->with(['module'=>$module,'roles'=>$roles,'moduleRole'=>$moduleRole]);
-		}else
-			return view("admin.module.delete")->with("module",$module);
+		return view("admin.module.delete")->with("module",$module);
 	}
-
+	/**
+	 * Muestra una vista con los permisos
+	 */
+	public function showPermissions($id){
+		$module = Module::findOrFail($id);
+		$roles = Roles::all(['id','slug','name','permissions']);
+		$moduleRole = ModuleRole::getModuleRoleByModule($id);
+		return view("admin.module_role.edit")->with(['module'=>$module,'roles'=>$roles,'moduleRole'=>$moduleRole]);
+		
+	}
 	/**
 	 * Show the form for editing the specified resource.
 	 *

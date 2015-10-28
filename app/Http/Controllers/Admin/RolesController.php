@@ -12,6 +12,7 @@ use Illuminate\Database\QueryException;
 
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Illuminate\Http;
+use miApp\miApp;
 class RolesController extends Controller {
 
 	/**
@@ -75,7 +76,7 @@ class RolesController extends Controller {
 			Sentinel::getRoleRepository()->createModel()->create([
 			    'name' 			=> $name,
 			    'slug' 			=> strtolower($name),
-				'permissions'	=>$permissions,
+				'permissions'	=> $permissions,
 			]);
 		}catch (QueryException $e){
 		
@@ -106,8 +107,7 @@ class RolesController extends Controller {
 	 */
 	public function edit($id)
 	{
-		$roles = Roles::findOrFail($id);
-		//dd($roles);
+		$roles = Roles::findOrFail($id);		
 		return view("admin.roles.edit",compact('roles'));
 	}
 
@@ -119,12 +119,10 @@ class RolesController extends Controller {
 	 */
 	public function update($id,Request $request)
 	{
-		
 		/**
 		 * consulto el rol para actualizar
 		 */
-		$roles = Roles::findOrFail($id);
-		
+		$role = Sentinel::findRoleById($id);
 		/**
 		 * Obtengo los valores correspondiente al formulario
 		 */
@@ -136,18 +134,29 @@ class RolesController extends Controller {
 		/**
 		 * creo el formato correspondiente para los permiso segun lo seleccionado
 		*/
-		$permissions="{";
+		/*$permissions="{";
 		$permissions.= $create!=null?'"'.$create.'":true,':'"user.create":false,';
 		$permissions.= $delete!=null?'"'.$delete.'":true,':'"user.delete":false,';
 		$permissions.= $view  !=null?'"'.$view.  '":true,':'"user.view":false,';
 		$permissions.= $update!=null?'"'.$update.'":true' :'"user.update":false';
-		$permissions.="}";
+		$permissions.="}";*/
 		
-		
-		
-		
-		
-		
+		$permissions = array(
+				'user.create'=>	$create!=null?true:false,
+				'user.delete'=>	$delete!=null?true:false,
+				'user.view'=>	$view!=null?true:false,
+				'user.update'=>	$update!=null?true:false,
+		);
+		try {
+			$role->name = $name;
+			$role->permissions = $permissions;
+			$role->save();
+		} catch (QueryException $e) {
+			flash()->overlay("Ocurrió un error en el registro, consulte con el administrador <br/>Error:$e",'Aviso');
+			return redirect()->back()->withInput($request->all());
+		}
+		flash()->overlay('Tu registro ha sido modificado!','Aviso');
+		return redirect("admin/roles");
 	}
 
 	/**
